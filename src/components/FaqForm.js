@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const AddFaqForm = props => {
+const FaqForm = props => {
   const initialFormState = {
     id: null,
     anchor: '',
@@ -62,4 +62,4 @@ const AddFaqForm = props => {
   )
 }
 
-export default AddFaqForm
+export default FaqForm
