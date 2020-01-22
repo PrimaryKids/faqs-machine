@@ -12,7 +12,6 @@ const FaqForm = props => {
 
   const handleInputChange = event => {
     const { name, value } = event.target
-    console.log('name: ', value)
     setFaq({ ...faq, [name]: value })
   }
 
