@@ -1,10 +1,10 @@
 import React from 'react'
-import FaqForm from '../components/FaqForm'
+import AddFaqForm from '../components/AddFaqForm'
 import '../Faq.css'
 
 export default {
-  title: 'FaqForm',
-  component: FaqForm,
+  title: 'AddFaqForm',
+  component: AddFaqForm,
 }
 
-export const Form = () => <FaqForm />
+export const Form = () => <AddFaqForm />

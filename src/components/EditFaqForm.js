@@ -1,13 +1,6 @@
 import React, { useState } from 'react'
 
-const FaqForm = props => {
-  const initialFormState = {
-    id: null,
-    anchor: '',
-    label: '',
-    question: '',
-    answer: '',
-  }
+const EditFaqForm = props => {
   const [faq, setFaq] = useState(props.currentFaq)
 
   const handleInputChange = event => {
@@ -18,8 +11,7 @@ const FaqForm = props => {
   return (
     <form onSubmit={event => {
       event.preventDefault()
-      props.addFaq(faq)
-      setFaq(initialFormState)
+      props.updateFaq(faq)
     }}>
       <div className="faq-m-b-4">
         <label className="faq-title--sm faq-m-b-1">Anchor</label>
@@ -60,9 +52,9 @@ const FaqForm = props => {
           onChange={handleInputChange}
         />
       </div>
-      <button className="faq-button faq-button--primary">Add new FAQ</button>
+      <button className="faq-button faq-button--primary">Save</button>
     </form>
   )
 }
 
-export default FaqForm
+export default EditFaqForm
