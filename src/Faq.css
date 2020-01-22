@@ -11,22 +11,22 @@ body {
 
 /* Typography */
 
-.faq-title--xl { 
+.faq-title--xl {
   font-size: 40px;
   font-weight: 500;
 }
 
-.faq-title--lg { 
+.faq-title--lg {
   font-size: 30px;
   font-weight: 500;
 }
 
-.faq-title--md { 
+.faq-title--md {
   font-size: 20px;
   font-weight: 500;
 }
 
-.faq-title--sm { 
+.faq-title--sm {
   font-size: 16px;
   font-weight: 500;
 }
@@ -137,3 +137,40 @@ body {
 .faq-m-b-3 { margin-bottom: 16px; }
 .faq-m-b-4 { margin-bottom: 32px; }
 
+.d-flex { display: flex; }
+
+/**
+ * By using display: flex
+ * Logo and nav are in 2 cols
+ * align-items make them
+ * vertically centered
+ * justify-content distribute
+ * horizontal spaces around
+ * and flex-wrap break the
+ * things in two lines in
+ * small screens
+ */
+.faq-header .container {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+/**
+ * The followings are to
+ * make things more
+ * clean and airy
+ * and contents centered
+ */
+.faq-nav ul {
+	margin: 1em 0 .5em;
+	text-align: center;
+}
+.faq-nav li {
+	display: inline;
+}
+.faq-nav a {
+	display: inline-block;
+	padding: .5em 1.5em;
+}

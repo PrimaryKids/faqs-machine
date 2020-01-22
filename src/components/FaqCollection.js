@@ -3,10 +3,8 @@ import Faq from './Faq'
 
 const FaqCollection = ({ anchor, label, faqs }) => {
   return (
-    <div className='faq-collection'>
-      <div className='width-100perc' tabIndex="-1">
-        <h3>{label}</h3>
-      </div>
+    <div className='faq-collection faq-m-b-4'>
+      <h2 className='faq-title--md'>{label}</h2>
       {faqs.map(faq => {
         return <Faq key={faq.id} faq={faq} />
       })}

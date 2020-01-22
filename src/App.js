@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Header from './components/Header'
 import FaqCollection from './components/FaqCollection'
 import './Faq.css'
 
@@ -28,17 +29,21 @@ const App = () => {
   })
 
   return (
-    <div className="App">
-      {hasError && <div>error</div>}
-      {Object.keys(byAnchorAndLabel).map(anchor => {
-        return <FaqCollection
-                key={anchor}
-                anchor={anchor}
-                label={byAnchorAndLabel[anchor].label}
-                faqs={byAnchorAndLabel[anchor].faqs}
-              />
-      })}
-    </div>
+    <>
+      <Header />
+
+      <div className="faq-container">
+        {hasError && <div>error</div>}
+        {Object.keys(byAnchorAndLabel).map(anchor => {
+          return <FaqCollection
+                  key={anchor}
+                  anchor={anchor}
+                  label={byAnchorAndLabel[anchor].label}
+                  faqs={byAnchorAndLabel[anchor].faqs}
+                />
+        })}
+      </div>
+    </>
   );
 }
 
