@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useToasts } from 'react-toast-notifications'
 
 const EditFaqForm = props => {
+  const { addToast } = useToasts()
   const [faq, setFaq] = useState(props.currentFaq)
 
   const handleInputChange = event => {
@@ -11,7 +13,18 @@ const EditFaqForm = props => {
   return (
     <form onSubmit={event => {
       event.preventDefault()
-      props.updateFaq(faq)
+      const { error } = props.updateFaq(faq)
+      if (error) {
+        addToast(error.message, {
+          appearance: 'error',
+          autoDismiss: true
+        })
+      } else {
+        addToast('Saved Successfully', {
+          appearance: 'success',
+          autoDismiss: true
+        })
+      }
     }}>
       <div className="faq-m-b-4">
         <label className="faq-title--sm faq-m-b-1">Anchor</label>

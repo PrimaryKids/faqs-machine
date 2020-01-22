@@ -27,7 +27,6 @@ const FaqEdit = () => {
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify({ faq: updatedFaq })
     })
