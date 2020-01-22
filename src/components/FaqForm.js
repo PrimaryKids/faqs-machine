@@ -11,9 +11,9 @@ const FaqForm = props => {
   const [faq, setFaq] = useState(initialFormState)
 
   const handleInputChange = event => {
-    const { field, value } = event.target
-
-    setFaq({ ...faq, [field]: value })
+    const { name, value } = event.target
+    console.log('name: ', value)
+    setFaq({ ...faq, [name]: value })
   }
 
   return (
