@@ -6,7 +6,7 @@ const FaqCollection = ({ anchor, label, faqs }) => {
     <div className='faq-collection faq-m-b-4'>
       <h2 className='faq-title--md'>{label}</h2>
       {faqs.map(faq => {
-        return <Faq key={faq.id} faq={faq} />
+        return <Faq faq={faq} key={faq.id} />
       })}
     </div>
   )

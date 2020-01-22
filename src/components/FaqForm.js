@@ -8,7 +8,7 @@ const FaqForm = props => {
     question: '',
     answer: '',
   }
-  const [faq, setFaq] = useState(initialFormState)
+  const [faq, setFaq] = useState(props.currentFaq)
 
   const handleInputChange = event => {
     const { name, value } = event.target
