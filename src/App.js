@@ -6,9 +6,10 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import FaqList from './components/FaqList'
+import Home from './pages/Home'
 import FaqEdit from './components/FaqEdit'
 import './Faq.css'
+import FaqGroup from './components/FaqGroup';
 
 const App = () => {
   return (
@@ -18,9 +19,12 @@ const App = () => {
         <div className='faq-container'>
           <Switch>
             <Route exact path='/'>
-              <FaqList />
+              <Home />
             </Route>
-            <Route path='/faqs/:id/edit'>
+            <Route exact path='/faq-groups/:faqGroupId'>
+              <FaqGroup />
+            </Route>
+            <Route path='/faq-groups/:faqGroupId/faqs/:faqId/edit'>
               <FaqEdit />
             </Route>
           </Switch>

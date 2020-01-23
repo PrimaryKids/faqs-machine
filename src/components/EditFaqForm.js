@@ -27,22 +27,22 @@ const EditFaqForm = props => {
       }
     }}>
       <div className="faq-m-b-4">
-        <label className="faq-title--sm faq-m-b-1">Anchor</label>
-        <input
-          type="text"
-          className="faq-input"
-          name="anchor"
-          value={faq.anchor}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className="faq-m-b-4">
         <label className="faq-title--sm faq-m-b-1">Label</label>
         <input
           type="text"
           className="faq-input"
           name="label"
           value={faq.label}
+          onChange={handleInputChange}
+        />
+      </div>
+      <div className="faq-m-b-4">
+        <label className="faq-title--sm faq-m-b-1">Anchor</label>
+        <input
+          type="text"
+          className="faq-input"
+          name="anchor"
+          value={faq.anchor}
           onChange={handleInputChange}
         />
       </div>
