@@ -59,9 +59,10 @@ const FaqGroup = () => {
         method: 'DELETE',
         mode: 'cors'
       })
-      const index = faqs.findIndex(faq => faq.id === id)
-      faqs.splice(index, 1)
-      setFaqs(faqs)
+      const newFaqsList = faqs.concat()
+      const index = newFaqsList.findIndex(faq => faq.id === id)
+      newFaqsList.splice(index, 1)
+      setFaqs(newFaqsList)
     } catch (error) {
       setErrors(error)
     }
