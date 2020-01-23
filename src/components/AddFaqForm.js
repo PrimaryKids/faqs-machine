@@ -1,46 +1,40 @@
 import React, { useState } from 'react'
+import { useToasts } from 'react-toast-notifications'
 
 const AddFaqForm = props => {
   const initialFormState = {
-    id: null,
-    anchor: '',
-    label: '',
     question: '',
     answer: '',
+    position: null
   }
   const [faq, setFaq] = useState(initialFormState)
+  const { addToast } = useToasts()
 
   const handleInputChange = event => {
     const { name, value } = event.target
     setFaq({ ...faq, [name]: value })
   }
 
-  return (
-    <form onSubmit={event => {
-      event.preventDefault()
-      props.addFaq(faq)
+  const handleSubmit = async event => {
+    event.preventDefault()
+    const { question, answer, position } = faq
+    try {
+      await props.createFaq({ question, answer, position })
+      addToast('Saved Successfully', {
+        appearance: 'success',
+        autoDismiss: true
+      })
       setFaq(initialFormState)
-    }}>
-      <div className="faq-m-b-4">
-        <label className="faq-title--sm faq-m-b-1">Anchor</label>
-        <input
-          type="text"
-          className="faq-input"
-          name="anchor"
-          value={faq.anchor}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className="faq-m-b-4">
-        <label className="faq-title--sm faq-m-b-1">Label</label>
-        <input
-          type="text"
-          className="faq-input"
-          name="label"
-          value={faq.label}
-          onChange={handleInputChange}
-        />
-      </div>
+    } catch (error) {
+      addToast(error.message, {
+        appearance: 'error',
+        autoDismiss: true
+      })
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
       <div className="faq-m-b-4">
         <label className="faq-title--sm faq-m-b-1">Question</label>
         <input
