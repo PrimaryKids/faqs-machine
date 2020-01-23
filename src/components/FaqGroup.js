@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, useHistory, Link } from 'react-router-dom'
 import { transformResponse } from '../utils'
 import EditFaqGroupForm from './EditFaqGroupForm'
 import Faq from './Faq'
@@ -10,6 +10,7 @@ const FaqGroup = () => {
   const [faqGroup, setFaqGroup] = useState({})
   const [faqs, setFaqs] = useState([])
   const { faqGroupId } = useParams()
+  const history = useHistory()
 
   const setProps = (data) => {
     setFaqGroup(data)
@@ -38,6 +39,18 @@ const FaqGroup = () => {
       .then(transformResponse)
       .then(setProps)
       .catch(setErrors)
+  }
+
+  const deleteFaqGroup = async id => {
+    try {
+      await fetch(`http://localhost:3000/api/v2/faq_groups/${id}`, {
+        method: 'DELETE',
+        mode: 'cors'
+      })
+      history.push('/')
+    } catch (error) {
+      setErrors(error)
+    }
   }
 
   const createFaq = attrs => {
@@ -72,11 +85,12 @@ const FaqGroup = () => {
     <>
       <Link to='/'>Back</Link>
       <div className='faq-collection faq-m-b-4'>
-        {hasError && <div>error</div>}
+        {hasError && <div>{hasError.message}</div>}
 
         {faqGroup.id && <EditFaqGroupForm
           currentFaqGroup={faqGroup}
           updateFaqGroup={updateFaqGroup}
+          deleteFaqGroup={deleteFaqGroup}
         />}
 
         {faqs.map(faq => {

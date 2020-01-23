@@ -10,6 +10,22 @@ const EditFaqGroupForm = props => {
     setFaqGroup({ ...faqGroup, [name]: value })
   }
 
+  const handleDelete = async event => {
+    event.preventDefault()
+    try {
+      await props.deleteFaqGroup(faqGroup.id)
+      addToast('FAQ Group successfully deleted', {
+        appearance: 'success',
+        autoDismiss: true
+      })
+    } catch (error) {
+      addToast(error.message, {
+        appearance: 'error',
+        autoDismiss: true
+      })
+    }
+  }
+
   const handleSubmit = async event => {
     event.preventDefault()
     const { label, anchor, position } = faqGroup
@@ -49,7 +65,16 @@ const EditFaqGroupForm = props => {
           onChange={handleInputChange}
         />
       </div>
-      <button className='faq-button faq-button--primary'>Save</button>
+
+      <div className='faq-d-flex faq-flex-justify-space-between'>
+        <button
+          className='faq-button faq-button--primary'
+          onClick={handleDelete}
+        >
+          Delete
+        </button>
+        <button className='faq-button faq-button--primary'>Save</button>
+      </div>
     </form>
   )
 }

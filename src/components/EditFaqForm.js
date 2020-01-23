@@ -10,6 +10,22 @@ const EditFaqForm = props => {
     setFaq({ ...faq, [name]: value })
   }
 
+  const handleDelete = async event => {
+    event.preventDefault()
+    try {
+      await props.deleteFaq(faq.id)
+      addToast('FAQ successfully deleted', {
+        appearance: 'success',
+        autoDismiss: true
+      })
+    } catch (error) {
+      addToast(error.message, {
+        appearance: 'error',
+        autoDismiss: true
+      })
+    }
+  }
+
   const handleSubmit = async event => {
     event.preventDefault()
     try {
@@ -47,7 +63,16 @@ const EditFaqForm = props => {
           onChange={handleInputChange}
         />
       </div>
-      <button className='faq-button faq-button--primary'>Save</button>
+
+      <div className='faq-d-flex faq-flex-justify-space-between'>
+        <button
+          className='faq-button faq-button--primary'
+          onClick={handleDelete}
+        >
+          Delete
+        </button>
+        <button className='faq-button faq-button--primary'>Save</button>
+      </div>
     </form>
   )
 }

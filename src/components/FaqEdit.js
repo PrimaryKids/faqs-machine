@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, useHistory, Link } from 'react-router-dom'
 import { transformResponse } from '../utils'
 import EditFaqForm from './EditFaqForm'
 
@@ -8,6 +8,7 @@ const FaqEdit = () => {
   const [faq, setFaq] = useState({})
   const [loading, setLoading] = useState(true)
   const { faqGroupId, faqId } = useParams()
+  const history = useHistory()
 
   useEffect(() => {
     async function fetchData() {
@@ -34,12 +35,30 @@ const FaqEdit = () => {
     return await transformResponse(response)
   }
 
+  const deleteFaq = async id => {
+    try {
+      await fetch(`http://localhost:3000/api/v2/faqs/${id}`, {
+        method: 'DELETE',
+        mode: 'cors'
+      })
+      history.push(`/faq-groups/${faqGroupId}`)
+    } catch (error) {
+      setErrors(error)
+    }
+  }
+
   return (
     <>
       <Link to={`/faq-groups/${faqGroupId}`}>Back</Link>
       <div>
         {hasError && <span>Error</span>}
-        { loading ? <span>loading...</span> : <EditFaqForm currentFaq={faq} updateFaq={updateFaq} /> }
+        { loading
+          ? <span>loading...</span>
+          : <EditFaqForm
+              currentFaq={faq}
+              updateFaq={updateFaq}
+              deleteFaq={deleteFaq}
+            /> }
       </div>
     </>
   )
