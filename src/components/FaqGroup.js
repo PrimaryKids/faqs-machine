@@ -4,6 +4,7 @@ import { transformResponse } from '../utils'
 import EditFaqGroupForm from './EditFaqGroupForm'
 import Faq from './Faq'
 import AddFaqForm from './AddFaqForm'
+import useGlobal from '../store'
 
 const FaqGroup = () => {
   const [hasError, setErrors] = useState(false)
@@ -11,6 +12,9 @@ const FaqGroup = () => {
   const [faqs, setFaqs] = useState([])
   const { faqGroupId } = useParams()
   const history = useHistory()
+  const [globalState, globalActions] = useGlobal()
+
+  const apiClient = globalState.apiClient
 
   const setProps = (data) => {
     setFaqGroup(data)
@@ -19,23 +23,16 @@ const FaqGroup = () => {
 
   useEffect(() => {
     async function fetchData() {
-      fetch(`http://localhost:3000/api/v2/faq_groups/${faqGroupId}`)
+      apiClient.get(`faq_groups/${faqGroupId}`)
         .then(transformResponse)
         .then(setProps)
         .catch(setErrors)
     }
     fetchData()
-  }, [faqGroupId])
+  }, [apiClient, faqGroupId])
 
   const updateFaqGroup = updatedFaqGroup => {
-    return fetch(`http://localhost:3000/api/v2/faq_groups/${faqGroupId}`, {
-      method: 'PUT',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ faq_group: updatedFaqGroup })
-    })
+    return apiClient.put(`faq_groups/${faqGroupId}`, { faq_group: updatedFaqGroup })
       .then(transformResponse)
       .then(setProps)
       .catch(setErrors)
@@ -43,10 +40,7 @@ const FaqGroup = () => {
 
   const deleteFaqGroup = async id => {
     try {
-      await fetch(`http://localhost:3000/api/v2/faq_groups/${id}`, {
-        method: 'DELETE',
-        mode: 'cors'
-      })
+      await apiClient.delete(`faq_groups/${id}`)
       history.push('/')
     } catch (error) {
       setErrors(error)
@@ -54,24 +48,14 @@ const FaqGroup = () => {
   }
 
   const createFaq = attrs => {
-    return fetch(`http://localhost:3000/api/v2/faq_groups/${faqGroupId}/faqs`, {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ faq: attrs })
-    })
+    return apiClient.post(`faq_groups/${faqGroupId}/faqs`, { faq: attrs })
       .then(transformResponse)
       .then(resp => setFaqs([...faqs, resp]))
   }
 
   const deleteFaq = async id => {
     try {
-      await fetch(`http://localhost:3000/api/v2/faqs/${id}`, {
-        method: 'DELETE',
-        mode: 'cors'
-      })
+      await apiClient.delete(`faqs/${id}`)
       const newFaqsList = faqs.concat()
       const index = newFaqsList.findIndex(faq => faq.id === id)
       newFaqsList.splice(index, 1)
