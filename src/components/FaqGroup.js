@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { transformResponse } from '../utils'
 import EditFaqGroupForm from './EditFaqGroupForm'
 import Faq from './Faq'
+import AddFaqForm from './AddFaqForm'
 
 const FaqGroup = () => {
   const [hasError, setErrors] = useState(false)
@@ -39,6 +40,19 @@ const FaqGroup = () => {
       .catch(setErrors)
   }
 
+  const createFaq = attrs => {
+    return fetch(`http://localhost:3000/api/v2/faq_groups/${faqGroupId}/faqs`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ faq: attrs })
+    })
+      .then(transformResponse)
+      .then(resp => setFaqs([...faqs, resp]))
+  }
+
   return (
     <>
       <Link to='/'>Back</Link>
@@ -53,6 +67,9 @@ const FaqGroup = () => {
         {faqs.map(faq => {
           return <Faq faq={faq} key={faq.id} />
         })}
+      </div>
+      <div className='faq-m-b-4'>
+        <AddFaqForm createFaq={createFaq} />
       </div>
     </>
   )

@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { useToasts } from 'react-toast-notifications'
 
 const AddFaqGroupForm = props => {
-  const defaultState = { label: '', anchor: '', position: null }
+  const initialFormState = { label: '', anchor: '', position: null }
   const { addToast } = useToasts()
-  const [faqGroup, setFaqGroup] = useState(defaultState)
+  const [faqGroup, setFaqGroup] = useState(initialFormState)
 
   const handleInputChange = event => {
     const { name, value } = event.target
@@ -20,6 +20,7 @@ const AddFaqGroupForm = props => {
         appearance: 'success',
         autoDismiss: true
       })
+      setFaqGroup(initialFormState)
     } catch (error) {
       addToast(error.message, {
         appearance: 'error',
