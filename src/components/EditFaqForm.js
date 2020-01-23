@@ -28,26 +28,26 @@ const EditFaqForm = props => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="faq-m-b-4">
-        <label className="faq-title--sm faq-m-b-1">Question</label>
+      <div className='faq-m-b-4'>
+        <label className='faq-title--sm faq-m-b-1'>Question</label>
         <input
-          type="text"
-          className="faq-input"
-          name="question"
+          type='text'
+          className='faq-input'
+          name='question'
           value={faq.question}
           onChange={handleInputChange}
         />
       </div>
-      <div className="faq-m-b-4">
-        <label className="faq-title--sm faq-m-b-1">Answer</label>
+      <div className='faq-m-b-4'>
+        <label className='faq-title--sm faq-m-b-1'>Answer</label>
         <textarea
-          name="answer"
-          className="faq-textarea"
+          name='answer'
+          className='faq-textarea'
           value={faq.answer}
           onChange={handleInputChange}
         />
       </div>
-      <button className="faq-button faq-button--primary">Save</button>
+      <button className='faq-button faq-button--primary'>Save</button>
     </form>
   )
 }

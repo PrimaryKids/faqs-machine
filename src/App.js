@@ -5,11 +5,11 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-} from "react-router-dom";
+} from 'react-router-dom'
 import Home from './pages/Home'
 import FaqEdit from './components/FaqEdit'
 import './Faq.css'
-import FaqGroup from './components/FaqGroup';
+import FaqGroup from './components/FaqGroup'
 
 const App = () => {
   return (
@@ -31,7 +31,7 @@ const App = () => {
         </div>
       </Router>
     </ToastProvider>
-  );
+  )
 }
 
 export default App
