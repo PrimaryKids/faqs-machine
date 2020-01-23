@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect }  from 'react'
+import { transformResponse } from '../utils'
 import { Link } from 'react-router-dom'
+import AddFaqGroupForm from './AddFaqGroupForm'
 
 const FaqGroupListItem = props => {
   let faqGroup = props.faqGroup
@@ -13,13 +15,43 @@ const FaqGroupListItem = props => {
   )
 }
 
-const FaqGroupList = ({ faqGroups }) => {
+const FaqGroupList = () => {
+  const [hasError, setErrors] = useState(false)
+  const [faqGroups, setFaqGroups] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      fetch('http://localhost:3000/api/v2/faq_groups')
+        .then(transformResponse)
+        .then(res => setFaqGroups(res))
+        .catch(err => setErrors(err))
+    }
+    fetchData()
+  }, [])
+
+  const createFaqGroup = attrs => {
+    return fetch(`http://localhost:3000/api/v2/faq_groups`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ faq_group: attrs })
+    })
+      .then(transformResponse)
+      .then(resp => setFaqGroups([...faqGroups, resp]))
+  }
+
   return (
-    <div>
-      {faqGroups.map(faqGroup => {
-        return <FaqGroupListItem faqGroup={faqGroup} key={faqGroup.id} />
-      })}
-    </div>
+    <>
+      <AddFaqGroupForm createFaqGroup={createFaqGroup} />
+      {hasError && <span>error</span>}
+      <div>
+        {faqGroups.map(faqGroup => {
+          return <FaqGroupListItem faqGroup={faqGroup} key={faqGroup.id} />
+        })}
+      </div>
+    </>
   )
 }
 

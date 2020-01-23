@@ -10,42 +10,24 @@ const EditFaqForm = props => {
     setFaq({ ...faq, [name]: value })
   }
 
+  const handleSubmit = async event => {
+    event.preventDefault()
+    try {
+      await props.updateFaq(faq)
+      addToast('Saved Successfully', {
+        appearance: 'success',
+        autoDismiss: true
+      })
+    } catch (error) {
+      addToast(error.message, {
+        appearance: 'error',
+        autoDismiss: true
+      })
+    }
+  }
+
   return (
-    <form onSubmit={event => {
-      event.preventDefault()
-      const { error } = props.updateFaq(faq)
-      if (error) {
-        addToast(error.message, {
-          appearance: 'error',
-          autoDismiss: true
-        })
-      } else {
-        addToast('Saved Successfully', {
-          appearance: 'success',
-          autoDismiss: true
-        })
-      }
-    }}>
-      <div className="faq-m-b-4">
-        <label className="faq-title--sm faq-m-b-1">Label</label>
-        <input
-          type="text"
-          className="faq-input"
-          name="label"
-          value={faq.label}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className="faq-m-b-4">
-        <label className="faq-title--sm faq-m-b-1">Anchor</label>
-        <input
-          type="text"
-          className="faq-input"
-          name="anchor"
-          value={faq.anchor}
-          onChange={handleInputChange}
-        />
-      </div>
+    <form onSubmit={handleSubmit}>
       <div className="faq-m-b-4">
         <label className="faq-title--sm faq-m-b-1">Question</label>
         <input
