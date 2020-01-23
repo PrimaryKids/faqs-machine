@@ -53,6 +53,20 @@ const FaqGroup = () => {
       .then(resp => setFaqs([...faqs, resp]))
   }
 
+  const deleteFaq = async id => {
+    try {
+      await fetch(`http://localhost:3000/api/v2/faqs/${id}`, {
+        method: 'DELETE',
+        mode: 'cors'
+      })
+      const index = faqs.findIndex(faq => faq.id === id)
+      faqs.splice(index, 1)
+      setFaqs(faqs)
+    } catch (error) {
+      setErrors(error)
+    }
+  }
+
   return (
     <>
       <Link to='/'>Back</Link>
@@ -65,7 +79,7 @@ const FaqGroup = () => {
         />}
 
         {faqs.map(faq => {
-          return <Faq faq={faq} key={faq.id} />
+          return <Faq faq={faq} key={faq.id} deleteFaq={deleteFaq} />
         })}
       </div>
       <div className='faq-m-b-4'>

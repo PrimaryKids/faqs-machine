@@ -1,7 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Faq = ({ faq }) => {
+const Faq = props => {
+  const { faq } = props
+
+  const handleDelete = () => props.deleteFaq(faq.id)
+
   return (
     <div className='faq-item faq-m-b-3'>
       <div className='faq-title--sm'>{faq.question}</div>
@@ -9,6 +13,7 @@ const Faq = ({ faq }) => {
       <Link to={`/faq-groups/${faq.faqGroupId}/faqs/${faq.id}/edit`} className='faq-button'>
         edit
       </Link>
+      <button className='faq-button faq-button--primary' onClick={handleDelete}>Delete</button>
     </div>
   )
 }
