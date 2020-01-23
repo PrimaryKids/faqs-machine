@@ -13,22 +13,22 @@ body {
 
 .faq-title--xl {
   font-size: 40px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .faq-title--lg {
   font-size: 30px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .faq-title--md {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .faq-title--sm {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 
@@ -127,9 +127,29 @@ body {
 /* Layout */
 
 .faq-container {
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 20px;
+  margin-right: 20px;
   max-width: 800px;
+}
+
+@media screen and (min-width: 840px) {
+  .faq-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.faq-group {
+  border: 1px solid #ccc;
+}
+
+.faq-group__row {
+  border-bottom: 1px solid #ccc;
+  padding: 20px;
+}
+
+.faq-group__row:last-child {
+  border-bottom: 0;
 }
 
 .faq-m-b-1 { margin-bottom: 4px; }
@@ -137,7 +157,14 @@ body {
 .faq-m-b-3 { margin-bottom: 16px; }
 .faq-m-b-4 { margin-bottom: 32px; }
 
-.d-flex { display: flex; }
+.faq-m-r-1 { margin-right: 4px; }
+.faq-m-r-2 { margin-right: 8px; }
+.faq-m-r-3 { margin-right: 16px; }
+.faq-m-r-4 { margin-right: 32px; }
+
+.faq-d-flex { display: flex; }
+
+.faq-flex-justify-space-between { justify-content: space-between; }
 
 /**
  * By using display: flex
