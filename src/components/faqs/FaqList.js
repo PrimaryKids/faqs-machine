@@ -97,13 +97,13 @@ const FaqList = props => {
 
   return (
     <>
-      <AddFaqForm createFaq={createFaq} />
-      {error && <span>{error}</span>}
+      <h2 className="faq-title--md">FAQs for </h2>
       <div className='faq-group faq-m-b-4'>
         <DndProvider backend={Backend}>
           <div>{faqs.map((faq, i) => renderFaq(faq, i))}</div>
         </DndProvider>
       </div>
+      <AddFaqForm createFaq={createFaq} />
     </>
   )
 }

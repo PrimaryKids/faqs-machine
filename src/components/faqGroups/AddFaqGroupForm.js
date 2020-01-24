@@ -30,9 +30,10 @@ const AddFaqGroupForm = props => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='faq-m-b-4'>
+    <form onSubmit={handleSubmit} className='faq-bg-gray faq-p-a-3 faq-m-t-4 faq-m-b-4'>
+      <h2 className="faq-title--md">Add a new FAQ group</h2>
       <div className='faq-m-b-4'>
-        <label className='faq-title--sm faq-m-b-1'>Label</label>
+        <label className='faq-title--sm faq-m-b-1'>FAQ group name</label>
         <input
           type='text'
           className='faq-input'

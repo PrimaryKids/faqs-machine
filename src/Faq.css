@@ -139,8 +139,17 @@ body {
   }
 }
 
+.faq-bg-gray {
+  background-color: #eee;
+}
+
 .faq-group {
-  border: 1px solid #ccc;
+  border-top-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 0;
+  border-style: solid;
+  border-color: #ccc;
 }
 
 .faq-group__row {
@@ -149,7 +158,7 @@ body {
 }
 
 .faq-group__row:last-child {
-  border-bottom: 0;
+  /*border-bottom: 0;*/
 }
 
 .faq-m-b-1 { margin-bottom: 4px; }
@@ -162,46 +171,12 @@ body {
 .faq-m-r-3 { margin-right: 16px; }
 .faq-m-r-4 { margin-right: 32px; }
 
+.faq-p-t-3 { padding-top: 16px; }
+.faq-p-b-3 { padding-bottom: 16px; }
+.faq-p-a-3 { padding: 16px; }
+
 .faq-d-flex { display: flex; }
+.faq-d-inline-block { display: inline-block; }
 
 .faq-flex-justify-space-between { justify-content: space-between; }
 
-/**
- * By using display: flex
- * Logo and nav are in 2 cols
- * align-items make them
- * vertically centered
- * justify-content distribute
- * horizontal spaces around
- * and flex-wrap break the
- * things in two lines in
- * small screens
- */
-.faq-header .container {
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	flex-wrap: wrap;
-}
-
-/**
- * The followings are to
- * make things more
- * clean and airy
- * and contents centered
- */
-.faq-nav ul {
-	margin: 1em 0 .5em;
-	text-align: center;
-}
-.faq-nav li {
-	display: inline;
-}
-.faq-nav a {
-	display: inline-block;
-	padding: .5em 1.5em;
-}
-
-a.faq-link {
-  text-decoration: none;
-}

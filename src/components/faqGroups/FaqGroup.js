@@ -48,17 +48,20 @@ const FaqGroup = () => {
 
   return (
     <>
-      <Link to='/'>Back</Link>
-      <div className='faq-collection faq-m-b-4'>
+      <Link to='/' className="faq-d-inline-block faq-text-link--secondary faq-m-b-4">Back to FAQ group list</Link>
+      <div className='faq-m-t-4 faq-m-b-4'>
         {hasError && <div>{hasError.message}</div>}
+
+        <FaqList faqs={faqs} />
+        {/* {faqs.map(faq => {
+          return <Faq faq={faq} key={faq.id} deleteFaq={deleteFaq} />
+        })} */}
 
         {faqGroup.id && <EditFaqGroupForm
           currentFaqGroup={faqGroup}
           updateFaqGroup={updateFaqGroup}
           deleteFaqGroup={deleteFaqGroup}
         />}
-
-        <FaqList faqs={faqs} />
       </div>
     </>
   )

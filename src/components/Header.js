@@ -4,17 +4,12 @@ import logo from '../svgs/primary-logo-small.svg'
 
 const Header = () => {
   return (
-    <header className='faq-header'>
-      <div className='container'>
+    <header className='faq-container faq-header faq-p-t-3 faq-p-b-3 faq-m-b-4'>
+      <div className='faq-d-flex faq-flex-justify-space-between'>
         <img src={logo} alt='logo' className='faq-logo' />
-        <nav className='faq-nav'>
-          <ul className='faq-nav-list'>
-            <li>
-              <Link to='/' className='faq-text-link--secondary'>Home</Link>
-            </li>
-          </ul>
-        </nav>
+        <Link to='/' className='faq-text-link--secondary'>Home</Link>
       </div>
+      <h1 className="faq-title--lg">FAQs Machine</h1>
     </header>
   )
 }

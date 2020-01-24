@@ -43,7 +43,7 @@ const FaqEdit = () => {
 
   return (
     <>
-      <Link to={`/faq-groups/${faqGroupId}`}>Back</Link>
+      <Link to={`/faq-groups/${faqGroupId}`} className="faq-d-inline-block faq-text-link--secondary faq-m-b-4">Back to FAQ group</Link>
       <div>
         {hasError && <span>Error</span>}
         { loading

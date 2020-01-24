@@ -100,13 +100,13 @@ const FaqGroupList = () => {
 
   return (
     <>
-      <AddFaqGroupForm createFaqGroup={createFaqGroup} />
-      {error && <span>{error}</span>}
+      <h2 className="faq-title--md">FAQ groups</h2>
       <div className='faq-group faq-m-b-4'>
         <DndProvider backend={Backend}>
           <div>{faqGroups.map((faqGroup, i) => renderFaqGroup(faqGroup, i))}</div>
         </DndProvider>
       </div>
+      <AddFaqGroupForm createFaqGroup={createFaqGroup} />
     </>
   )
 }
