@@ -10,7 +10,7 @@ const FaqEdit = () => {
   const [loading, setLoading] = useState(true)
   const { faqGroupId, faqId } = useParams()
   const history = useHistory()
-  const [globalState, globalActions] = useGlobal()
+  const [globalState] = useGlobal()
 
   const apiClient = globalState.apiClient
 
