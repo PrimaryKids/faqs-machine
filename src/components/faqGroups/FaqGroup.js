@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useHistory, Link } from 'react-router-dom'
-import { transformResponse } from '../utils'
+import { transformResponse } from '../../utils'
 import EditFaqGroupForm from './EditFaqGroupForm'
-import Faq from './Faq'
-import AddFaqForm from './AddFaqForm'
-import useGlobal from '../store'
+import Faq from '../faqs/Faq'
+import AddFaqForm from '../faqs/AddFaqForm'
+import useGlobal from '../../store'
 
 const FaqGroup = () => {
   const [hasError, setErrors] = useState(false)

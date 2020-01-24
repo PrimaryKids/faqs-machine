@@ -7,9 +7,9 @@ import {
   Route,
 } from 'react-router-dom'
 import Home from './pages/Home'
-import FaqEdit from './components/FaqEdit'
+import FaqEdit from './components/faqs/FaqEdit'
 import './Faq.css'
-import FaqGroup from './components/FaqGroup'
+import FaqGroup from './components/faqGroups/FaqGroup'
 import GoogleLogin from 'react-google-login'
 import useGlobal from './store'
 import { useSessionStorageState } from 'react-storage-hooks'

@@ -1,5 +1,5 @@
 import React from 'react'
-import FaqGroupList from '../components/FaqGroupList'
+import FaqGroupList from '../components/faqGroups/FaqGroupList'
 
 const Home = () => {
   return (

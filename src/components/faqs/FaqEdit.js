@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useHistory, Link } from 'react-router-dom'
-import { transformResponse } from '../utils'
+import { transformResponse } from '../../utils'
 import EditFaqForm from './EditFaqForm'
-import useGlobal from '../store'
+import useGlobal from '../../store'
 
 const FaqEdit = () => {
   const [hasError, setErrors] = useState(false)
