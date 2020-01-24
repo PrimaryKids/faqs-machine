@@ -12,7 +12,7 @@ const FaqGroup = () => {
   const [faqs, setFaqs] = useState([])
   const { faqGroupId } = useParams()
   const history = useHistory()
-  const [globalState, globalActions] = useGlobal()
+  const [globalState] = useGlobal()
 
   const apiClient = globalState.apiClient
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback }  from 'react'
 import { transformResponse } from '../../utils'
 import AddFaqGroupForm from './AddFaqGroupForm'
-import FaqGroupListItem from './FaqGroupListItem'
+import DraggableItem from '../DraggableItem'
 import useGlobal from '../../store'
 import { DndProvider } from 'react-dnd'
 import update from 'immutability-helper'
@@ -11,7 +11,7 @@ import { useToasts } from 'react-toast-notifications'
 const FaqGroupList = () => {
   const [hasError, setErrors] = useState(false)
   const [faqGroups, setFaqGroups] = useState([])
-  const [globalState, globalActions] = useGlobal()
+  const [globalState] = useGlobal()
   const apiClient = globalState.apiClient
   const { addToast } = useToasts()
 
@@ -56,29 +56,31 @@ const FaqGroupList = () => {
 
   const renderFaqGroup = (faqGroup, index) => {
     return (
-      <FaqGroupListItem
+      <DraggableItem
         key={faqGroup.id}
         index={index}
         id={faqGroup.id}
-        faqGroup={faqGroup}
-        moveFaqGroupListItem={moveFaqGroupListItem}
-        reorderFaqGroup={reorderFaqGroup}
-        findFaqGroup={findFaqGroup}
+        item={faqGroup}
+        moveItem={moveFaqGroupListItem}
+        reorderItem={reorderFaqGroup}
+        findItem={findFaqGroup}
+        itemType='faqGroup'
       />
     )
   }
-  useEffect(() => {
-    apiClient.get('faq_groups')
-      .then(transformResponse)
-      .then(res => setFaqGroups(res))
-      .catch(err => setErrors(err))
-  }, [apiClient])
 
   const createFaqGroup = attrs => {
     return globalState.apiClient.post('faq_groups', { faq_group: attrs })
       .then(transformResponse)
       .then(resp => setFaqGroups([...faqGroups, resp]))
   }
+
+  useEffect(() => {
+    apiClient.get('faq_groups')
+      .then(transformResponse)
+      .then(res => setFaqGroups(res))
+      .catch(err => setErrors(err))
+  }, [apiClient])
 
   return (
     <>
