@@ -1,3 +1,9 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b58541e4-3c47-4cbe-84de-0d5529f7f09b/deploy-status)](https://app.netlify.com/sites/primary-faqs-machine/deploys)
+
+# FAQs Machine
+
+Microsite to manage Primary FAQs
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
