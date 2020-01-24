@@ -44,31 +44,34 @@ const EditFaqGroupForm = props => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='faq-m-b-4'>
-      <div className='faq-m-b-4'>
-        <label className='faq-title--sm faq-m-b-1'>Label</label>
-        <input
-          type='text'
-          className='faq-input'
-          name='label'
-          value={faqGroup.label}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className='faq-m-b-4'>
-        <label className='faq-title--sm faq-m-b-1'>Anchor</label>
-        <input
-          type='text'
-          className='faq-input'
-          name='anchor'
-          value={faqGroup.anchor}
-          onChange={handleInputChange}
-        />
+    <form onSubmit={handleSubmit} className='faq-bg-gray faq-p-a-3 faq-m-t-4 faq-m-b-4'>
+      <h2 className="faq-title--md">Edit FAQ group details</h2>
+      <div className="faq-m-t-4">
+        <div className='faq-m-b-4'>
+          <label className='faq-title--sm faq-m-b-1'>FAQ group name</label>
+          <input
+            type='text'
+            className='faq-input'
+            name='label'
+            value={faqGroup.label}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className='faq-m-b-4'>
+          <label className='faq-title--sm faq-m-b-1'>Anchor</label>
+          <input
+            type='text'
+            className='faq-input'
+            name='anchor'
+            value={faqGroup.anchor}
+            onChange={handleInputChange}
+          />
+        </div>
       </div>
 
       <div className='faq-d-flex faq-flex-justify-space-between'>
         <button
-          className='faq-button faq-button--primary'
+          className='faq-button faq-button--secondary'
           onClick={handleDelete}
         >
           Delete

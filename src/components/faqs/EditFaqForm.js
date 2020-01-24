@@ -66,7 +66,7 @@ const EditFaqForm = props => {
 
       <div className='faq-d-flex faq-flex-justify-space-between'>
         <button
-          className='faq-button faq-button--primary'
+          className='faq-button faq-button--secondary'
           onClick={handleDelete}
         >
           Delete

@@ -7,7 +7,7 @@ const Faq = props => {
   const handleDelete = () => props.deleteFaq(faq.id)
 
   return (
-    <div className='faq-item faq-m-b-3'>
+    <div className='faq-group__row faq-m-b-3'>
       <div className='faq-title--sm'>{faq.question}</div>
       <span dangerouslySetInnerHTML={{ __html: faq.answer }} />
       <Link to={`/faq-groups/${faq.faqGroupId}/faqs/${faq.id}/edit`} className='faq-button'>

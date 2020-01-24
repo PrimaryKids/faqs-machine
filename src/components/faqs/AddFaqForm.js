@@ -34,7 +34,8 @@ const AddFaqForm = props => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="faq-bg-gray faq-p-a-3 faq-m-t-4 faq-m-b-4">
+      <h2 className="faq-title--md">Add a new FAQ</h2>
       <div className='faq-m-b-4'>
         <label className='faq-title--sm faq-m-b-1'>Question</label>
         <input
