@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useHistory, Link } from 'react-router-dom'
 import { transformResponse } from '../../utils'
 import EditFaqGroupForm from './EditFaqGroupForm'
-import Faq from '../faqs/Faq'
+import FaqList from '../faqs/FaqList'
 import AddFaqForm from '../faqs/AddFaqForm'
 import useGlobal from '../../store'
 
@@ -77,13 +77,14 @@ const FaqGroup = () => {
           deleteFaqGroup={deleteFaqGroup}
         />}
 
-        {faqs.map(faq => {
+        <FaqList faqs={faqs} />
+        {/* {faqs.map(faq => {
           return <Faq faq={faq} key={faq.id} deleteFaq={deleteFaq} />
-        })}
+        })} */}
       </div>
-      <div className='faq-m-b-4'>
+      {/* <div className='faq-m-b-4'>
         <AddFaqForm createFaq={createFaq} />
-      </div>
+      </div> */}
     </>
   )
 }

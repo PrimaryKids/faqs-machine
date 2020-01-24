@@ -1,9 +1,9 @@
 import React, { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 const style = { cursor: 'move' }
 
-const DraggableItem = ({ id, item, index, moveItem, reorderItem, findItem, itemType }) => {
+const DraggableItem = ({ id, item, index, moveItem, reorderItem, findItem, itemType, children }) => {
   const ref = useRef(null)
   const [, drop] = useDrop({
     accept: itemType,
@@ -65,13 +65,7 @@ const DraggableItem = ({ id, item, index, moveItem, reorderItem, findItem, itemT
 
   return (
     <div ref={ref} style={{ ...style, opacity }}>
-      <div className='faq-group__row faq-d-flex faq-flex-justify-space-between'>
-        <div className='faq-d-flex'>
-          <svg className='faq-m-r-3' xmlns='http://www.w3.org/2000/svg' height='30' width='30' viewBox='20 20 60 60'><path d='M73,48.4l-10.4-9.6v4.8H52.4V33.4h4.8L47.6,23l-8.9,10.4h4.8v10.2H33.4v-4.8L23,48.4l10.4,8.9v-4.8h10.2v10.2h-4.8L47.6,73   l9.6-10.4h-4.8V52.4h10.2v4.8L73,48.4z' /></svg>
-          <span className='faq-title--sm'>{item.label}</span>
-        </div>
-        <Link to={`/faq-groups/${item.id}`} className='faq-text-link--primary'>Edit</Link>
-      </div>
+      {children}
     </div>
   )
 }
