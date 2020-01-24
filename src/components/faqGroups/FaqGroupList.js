@@ -10,7 +10,7 @@ import Backend from 'react-dnd-html5-backend'
 import { useToasts } from 'react-toast-notifications'
 
 const FaqGroupList = () => {
-  const [hasError, setErrors] = useState(false)
+  const [error, setErrors] = useState(false)
   const [faqGroups, setFaqGroups] = useState([])
   const [globalState] = useGlobal()
   const apiClient = globalState.apiClient
@@ -35,11 +35,13 @@ const FaqGroupList = () => {
     apiClient.put(`faq_groups/${id}/reorder`, {
       faq_group: { position }
     }).then(() => {
+      setErrors(null)
       addToast('Saved Successfully', {
         appearance: 'success',
         autoDismiss: true
       })
     }).catch((e) => {
+      setErrors(e.message)
       addToast(e.message, {
         appearance: 'error',
         autoDismiss: true
@@ -105,7 +107,6 @@ const FaqGroupList = () => {
         </DndProvider>
       </div>
       <AddFaqGroupForm createFaqGroup={createFaqGroup} />
-      {hasError && <span>error</span>}
     </>
   )
 }

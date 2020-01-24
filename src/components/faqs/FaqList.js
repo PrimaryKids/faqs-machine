@@ -10,7 +10,7 @@ import Backend from 'react-dnd-html5-backend'
 import { useToasts } from 'react-toast-notifications'
 
 const FaqList = props => {
-  const [hasError, setErrors] = useState(false)
+  const [error, setErrors] = useState(null)
   const [faqs, setFaqs] = useState([])
   const [globalState] = useGlobal()
   const apiClient = globalState.apiClient
@@ -35,11 +35,13 @@ const FaqList = props => {
     apiClient.put(`faqs/${id}/reorder`, {
       faq: { position }
     }).then(() => {
+      setErrors(null)
       addToast('Saved Successfully', {
         appearance: 'success',
         autoDismiss: true
       })
     }).catch((e) => {
+      setErrors(e.message)
       addToast(e.message, {
         appearance: 'error',
         autoDismiss: true
@@ -87,18 +89,6 @@ const FaqList = props => {
     return globalState.apiClient.post('faqs', { faq: attrs })
       .then(transformResponse)
       .then(resp => setFaqs([...faqs, resp]))
-  }
-
-  const deleteFaq = async id => {
-    try {
-      await apiClient.delete(`faqs/${id}`)
-      const newFaqsList = faqs.concat()
-      const index = newFaqsList.findIndex(faq => faq.id === id)
-      newFaqsList.splice(index, 1)
-      setFaqs(newFaqsList)
-    } catch (error) {
-      setErrors(error)
-    }
   }
 
   useEffect(() => {

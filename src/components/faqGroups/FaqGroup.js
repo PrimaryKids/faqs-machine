@@ -3,7 +3,6 @@ import { useParams, useHistory, Link } from 'react-router-dom'
 import { transformResponse } from '../../utils'
 import EditFaqGroupForm from './EditFaqGroupForm'
 import FaqList from '../faqs/FaqList'
-import AddFaqForm from '../faqs/AddFaqForm'
 import useGlobal from '../../store'
 
 const FaqGroup = () => {
@@ -47,24 +46,6 @@ const FaqGroup = () => {
     }
   }
 
-  const createFaq = attrs => {
-    return apiClient.post(`faq_groups/${faqGroupId}/faqs`, { faq: attrs })
-      .then(transformResponse)
-      .then(resp => setFaqs([...faqs, resp]))
-  }
-
-  const deleteFaq = async id => {
-    try {
-      await apiClient.delete(`faqs/${id}`)
-      const newFaqsList = faqs.concat()
-      const index = newFaqsList.findIndex(faq => faq.id === id)
-      newFaqsList.splice(index, 1)
-      setFaqs(newFaqsList)
-    } catch (error) {
-      setErrors(error)
-    }
-  }
-
   return (
     <>
       <Link to='/' className="faq-d-inline-block faq-text-link--secondary faq-m-b-4">Back to FAQ group list</Link>
@@ -81,11 +62,7 @@ const FaqGroup = () => {
           updateFaqGroup={updateFaqGroup}
           deleteFaqGroup={deleteFaqGroup}
         />}
-
       </div>
-      {/* <div className='faq-m-b-4'>
-        <AddFaqForm createFaq={createFaq} />
-      </div> */}
     </>
   )
 }
