@@ -44,7 +44,6 @@ const FaqGroupList = () => {
         autoDismiss: true
       })
     })
-
   }
 
   const findFaqGroup = id => {
